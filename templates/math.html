@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <form method="post">
+        N: <input type="number" name="number" title="number" {# value="190781907819078" #} autofocus="">
+        <input type="submit" value="Do some science!">
+        {% module xsrf_form_html() %}
+    </form>
+{% end %}

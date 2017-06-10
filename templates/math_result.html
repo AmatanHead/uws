@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {{ n }} =
+    {% for i, (b, e) in enumerate(numbers) %}
+        {{ b }}{% if e > 1 %}<sup>{{ e }}</sup>{% end %}{% if i != len(numbers) - 1 %} &times; {% end %}
+    {% end %}
+    <p><a href="{{ reverse_url('math') }}">Moar!</a></p>
+{% end %}

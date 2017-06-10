@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <pre style="font-family: monospace" id="result">Wait once...</pre>
+    <p><a href="{{ reverse_url('ping') }}">One more time!</a></p>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script>
+        (function update() {
+            $.ajax({
+                url: '{{ reverse_url('wait_ping') + '?task_id=' + str(task_id) }}',
+                success: function(data) {
+                    data = JSON.parse(data);
+                    $('#result').text(data['lines']);
+                    if (!data['is_finished']) {
+                        update();
+                    }
+                },
+                error: function (e) {
+                    $('#result').text('Error when reading data: ' + e.statusText);
+                    console.log(e);
+                },
+                timeout: 500000
+            });
+        })();
+    </script>
+
+{% end %}

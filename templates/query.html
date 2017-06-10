@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <form method="post">
+        <textarea title="query" name="query" style="width: 500px" autofocus="">DROP TABLE user;</textarea>
+        <br>
+        <input type="submit" value="LEEROY JENKINS!!1">
+        {% module xsrf_form_html() %}
+    </form>
+{% end %}

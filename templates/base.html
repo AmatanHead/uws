@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UWS</title>
+</head>
+<body>
+    <a href="{{ reverse_url('index') }}"><- go there</a>
+        |
+    {% if current_user %}
+        <a href="{{ reverse_url('logout') }}">logout</a>
+    {% else %}
+        <a href="{{ reverse_url('login') }}">login</a>
+        |
+        <a href="{{ reverse_url('register') }}">register</a>
+    {% end %}
+    <hr>
+    {% block body %}
+    {% end %}
+</body>
+</html>

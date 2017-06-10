@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <form method="post">
+        @ <input type="text" name="username" title="username" value="{{ username }}" autofocus="">
+        #1 <input type="password" name="password1" title="password">
+        #2 <input type="password" name="password2" title="password">
+        <input type="submit" value="go for it!">
+        {% module xsrf_form_html() %}
+    </form>
+    {% if already_has %}
+        <div><small>This username is already in use. <a href="{{ reverse_url('login') }}">Login?</a></small></div>
+    {% end %}
+    {% if no_username %}
+        <div><small>Hi there, we're sorry, but the empty username is already taken by user ''.</small></div>
+    {% end %}
+    {% if big_username %}
+        <div><small>This is a very long username. I don't believe you can have that long username.</small></div>
+    {% end %}
+    {% if wrong_username %}
+        <div><small>This username is too wired for me. Try another one.</small></div>
+    {% end %}
+    {% if weak_pass %}
+        <div><small>Your password is too weak. Try entering at least something.</small></div>
+    {% end %}
+    {% if strong_pass %}
+        <div><small>Your password is too strong. Maybe try 'qwerty' or 'pass'?</small></div>
+    {% end %}
+    {% if miss_pass %}
+        <div><small>Your two passwords does not match one another.</small></div>
+    {% end %}
+{% end %}

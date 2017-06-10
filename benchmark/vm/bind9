@@ -1,0 +1,2 @@
+RESOLVCONF=yes
+OPTIONS="-u -4 bind"

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <form method="post">
+        @ <input type="text" name="username" title="username" value="{{ username }}" autofocus="">
+        # <input type="password" name="password" title="password">
+        <input type="submit" value="->">
+        {% module xsrf_form_html() %}
+    </form>
+    {% if incorrect %}
+        <div><small>Your username or password is incorrect.</small></div>
+    {% end %}
+{% end %}

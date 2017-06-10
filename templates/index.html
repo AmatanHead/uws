@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% if current_user %}
+        <p>Hi {{ current_user.username }}, welcome to the UWS — the best useless webserver!</p>
+    {% else %}
+        <p>Hi there, mr. stranger, welcome to the UWS — the best useless webserver!</p>
+    {% end %}
+    <p>Here you can:</p>
+    <ul>
+        {% if current_user %}
+            <li><a href="{{ reverse_url('logout') }}">Logout</a></li>
+            <li><a href="{{ reverse_url('query') }}">Drop our database</a></li>
+            <li><a href="{{ reverse_url('math') }}">Do some heavy calculations</a></li>
+            <li><a href="{{ reverse_url('ping') }}">Ping yourself to death</a></li>
+            <li>Download some white noise (<a href="/static/f1">1</a>, <a href="/static/f2">2</a>, <a href="/static/f3">3</a>, <a href="/static/f4">4</a>)</li>
+        {% else %}
+            <li><a href="{{ reverse_url('login') }}">Login</a></li>
+            <li><a href="{{ reverse_url('register') }}">Register</a></li>
+            <li><a href="{{ reverse_url('away') }}">Go away</a></li>
+        {% end %}
+    </ul>
+{% end %}
