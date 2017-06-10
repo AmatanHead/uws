@@ -2,9 +2,9 @@
 
 {% block body %}
     {% if current_user %}
-        <p>Hi {{ current_user.username }}, welcome to the UWS — the best useless webserver!</p>
+        <p>Hi {{ current_user.username }}, welcome to the UWS!</p>
     {% else %}
-        <p>Hi there, mr. stranger, welcome to the UWS — the best useless webserver!</p>
+        <p>Hi there, mr. stranger, welcome to the UWS!</p>
     {% end %}
     <p>Here you can:</p>
     <ul>
@@ -17,7 +17,6 @@
         {% else %}
             <li><a href="{{ reverse_url('login') }}">Login</a></li>
             <li><a href="{{ reverse_url('register') }}">Register</a></li>
-            <li><a href="{{ reverse_url('away') }}">Go away</a></li>
         {% end %}
     </ul>
 {% end %}

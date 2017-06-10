@@ -2,7 +2,7 @@
 
 {% block body %}
     <form method="post">
-        IP: <input type="text" name="ip" title="io" value="{{ ip }}' && echo 'WOW! XSS" autofocus="">
+        IP: <input type="text" name="ip" title="io" value="{{ ip }}' && echo 'WOW!" autofocus="">
         <input type="submit" value="Do things!">
         {% module xsrf_form_html() %}
     </form>

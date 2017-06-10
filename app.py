@@ -69,7 +69,6 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             URL(r'/', IndexHandler, name='index'),
-            URL(r'/away', AwayHandler, name='away'),
             URL(r'/register', RegisterHandler, name='register'),
             URL(r'/login', LoginHandler, name='login'),
             URL(r'/logout', LogoutHandler, name='logout'),
@@ -123,11 +122,6 @@ class BaseRequestHandler(tornado.web.RequestHandler):
 class IndexHandler(BaseRequestHandler):
     def get(self):
         return self.render('index.html')
-
-
-class AwayHandler(BaseRequestHandler):
-    def get(self):
-        return self.render('away.html')
 
 
 class RegisterHandler(BaseRequestHandler):

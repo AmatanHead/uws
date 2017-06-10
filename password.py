@@ -2,6 +2,7 @@ import hashlib
 import random
 import string
 import base64
+import codecs
 
 
 class Password:
@@ -31,10 +32,10 @@ class Password:
         )
 
     def to_string(self) -> str:
-        return base64.b64encode(b'\t'.join([
-            self.encoded,
+        return base64.b64encode(b'\0'.join([
+            self.encoded.replace(b'\\', b'\\\\').replace(b'\0', b'\\0'),
             bytes(str(self.iterations), 'ascii'),
-            self.salt,
+            self.salt.replace(b'\\', b'\\\\').replace(b'\0', b'\\0'),
             bytes(self.algorithm, 'ascii')
         ]))
 
@@ -42,9 +43,12 @@ class Password:
     def from_string(cls, raw: str):
         raw = base64.b64decode(raw)
 
-        encoded, iterations, salt, algorithm = raw.split(b'\t')
+        print(raw)
 
+        encoded, iterations, salt, algorithm = raw.split(b'\0')
+        encoded = codecs.escape_decode(encoded)[0]
         iterations = int(iterations)
+        salt = codecs.escape_decode(salt)[0]
         algorithm = str(algorithm)
 
         return cls(encoded, salt, iterations, algorithm)
